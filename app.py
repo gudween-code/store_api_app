@@ -32,7 +32,7 @@ api.add_resource(StoreList, '/stores')
 
 api.add_resource(UserRegister, '/register')
 
-app.route('/')
+@app.route('/')
 def hello_world():
     return "Hello World"
 
