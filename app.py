@@ -32,13 +32,13 @@ api.add_resource(StoreList, '/stores')
 
 api.add_resource(UserRegister, '/register')
 
-app.route('/hello')
+app.route('/')
 def hello_world():
     return "Hello World"
 
 @app.route('/items')
 def hello():
-    r = requests.get('http://127.0.0.1:5000/items')
+    r = requests.get('https://store-api-app.herokuapp.com/items')
     return r.text
 
 if __name__ == '__main__':
