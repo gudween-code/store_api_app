@@ -1,7 +1,7 @@
 import os
 import re
 
-from flask import Flask
+from flask import Flask, render_template
 import requests
 from flask_restful import Api
 from flask_jwt import JWT
@@ -33,8 +33,8 @@ api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
 
 @app.route('/')
-def hello_world():
-    return "Hello World"
+def index():
+    return render_template('index.html')
 
 @app.route('/items')
 def hello():
