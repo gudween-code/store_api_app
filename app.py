@@ -5,6 +5,7 @@ from flask import Flask, render_template
 import requests
 from flask_restful import Api
 from flask_jwt import JWT
+from flask_cors import CORS, cross_origin
 from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, Items
@@ -18,6 +19,8 @@ else:
 # rest of connection code using the connection string `uri`
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
@@ -33,6 +36,7 @@ api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
 
 @app.route('/')
+@cross_origin()
 def index():
     return render_template('index.html')
 
